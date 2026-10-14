@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "titulo": "Determinantes del financiamiento de vivienda en Bogotá y algunas cabeceras departamentales de Colombia, 2019-2024",
+    "autor": "Daniel Fernando Barragán Chía",
+    "universidad": "Universidad Pedagógica y Tecnológica de Colombia (UPTC)",
+    "fuente_datos": "DANE, Encuesta Nacional de Calidad de Vida (ECV) 2019 y 2024, factor de expansión calibrado FEX_C",
+    "variable_dependiente": "1 si el hogar tiene vivienda en proceso de pago (crédito hipotecario activo)",
+    "unidad_analisis": "Hogar, con características del jefe de hogar",
+    "territorios": ["Bogotá D.C.", "Cab-Boyacá", "Cab-Tolima", "Cab-Meta"],
+    "territorio_referencia": "Bogotá D.C.",
+    "nota_territorios": "Son cabeceras departamentales de la ECV, no las ciudades capitales.",
+    "estimacion": "Errores estándar robustos entre paréntesis; ponderado con FEX_C (pweight). Significancia: * p<0.10, ** p<0.05, *** p<0.01",
+    "unidad_ingreso": "Log natural del ingreso laboral del jefe, en pesos colombianos. VERIFICAR en la monografía si es mensual antes de mostrar un valor en COP.",
+    "fuente_tablas": "Tabla 9.1 (Logit y efectos marginales), Cuadro E.1 (Probit, robustez), Tabla 8.3 y Figura 8.1 (descriptivas)"
+  },
+  "orden_variables": ["log_ingreso", "edad", "edad2", "educ_superior", "formal", "boyaca", "tolima", "meta"],
+  "etiquetas": {
+    "log_ingreso": "Log ingreso laboral del jefe",
+    "edad": "Edad del jefe (años)",
+    "edad2": "Edad al cuadrado",
+    "educ_superior": "Educación superior (1 = sí)",
+    "formal": "Formal con contrato escrito (1 = sí)",
+    "boyaca": "Cab-Boyacá (ref. Bogotá)",
+    "tolima": "Cab-Tolima (ref. Bogotá)",
+    "meta": "Cab-Meta (ref. Bogotá)"
+  },
+  "logit": {
+    "nota": "Modelo principal. p = 1 / (1 + exp(-(const + sum(coef * x)))). Coeficientes redondeados a 4 decimales tal como aparecen en la Tabla 9.1.",
+    "2019": {
+      "const": -13.3500,
+      "const_se": 1.6454,
+      "const_sig": "***",
+      "coef":     {"log_ingreso": 0.0278, "edad": 0.4295, "edad2": -0.0043, "educ_superior": 0.5895, "formal": 0.2908, "boyaca": -0.0405, "tolima": -0.1417, "meta": -0.8924},
+      "se":       {"log_ingreso": 0.0500, "edad": 0.0702, "edad2": 0.0008,  "educ_superior": 0.1791, "formal": 0.1727, "boyaca": 0.2022,  "tolima": 0.1785,  "meta": 0.2382},
+      "sig":      {"log_ingreso": "",     "edad": "***",  "edad2": "***",   "educ_superior": "***",  "formal": "*",    "boyaca": "",      "tolima": "",       "meta": "***"},
+      "ame":      {"log_ingreso": 0.0021, "edad": 0.0319, "edad2": -0.0003, "educ_superior": 0.0438, "formal": 0.0216, "boyaca": -0.0031, "tolima": -0.0104, "meta": -0.0495},
+      "ame_se":   {"log_ingreso": 0.0037, "edad": 0.0056, "edad2": 0.0001,  "educ_superior": 0.0132, "formal": 0.0129, "boyaca": 0.0154,  "tolima": 0.0129,  "meta": 0.0112},
+      "ame_sig":  {"log_ingreso": "",     "edad": "***",  "edad2": "***",   "educ_superior": "***",  "formal": "*",    "boyaca": "",      "tolima": "",       "meta": "***"},
+      "n": 5058,
+      "pseudo_r2": 0.0756,
+      "log_pseudoverosimilitud": -6.15e5
+    },
+    "2024": {
+      "const": -8.6034,
+      "const_se": 2.0027,
+      "const_sig": "***",
+      "coef":     {"log_ingreso": 0.1050, "edad": 0.1612, "edad2": -0.0015, "educ_superior": 0.7894, "formal": 0.2122, "boyaca": -0.7768, "tolima": -0.1863, "meta": -0.3741},
+      "se":       {"log_ingreso": 0.0645, "edad": 0.0783, "edad2": 0.0008,  "educ_superior": 0.2489, "formal": 0.2339, "boyaca": 0.2361,  "tolima": 0.2291,  "meta": 0.2419},
+      "sig":      {"log_ingreso": "",     "edad": "**",   "edad2": "*",     "educ_superior": "***",  "formal": "",     "boyaca": "***",   "tolima": "",       "meta": ""},
+      "ame":      {"log_ingreso": 0.0066, "edad": 0.0101, "edad2": -0.0001, "educ_superior": 0.0494, "formal": 0.0133, "boyaca": -0.0378, "tolima": -0.0115, "meta": -0.0214},
+      "ame_se":   {"log_ingreso": 0.0041, "edad": 0.0049, "edad2": 0.0001,  "educ_superior": 0.0158, "formal": 0.0147, "boyaca": 0.0108,  "tolima": 0.0138,  "meta": 0.0131},
+      "ame_sig":  {"log_ingreso": "",     "edad": "**",   "edad2": "*",     "educ_superior": "***",  "formal": "",     "boyaca": "***",   "tolima": "",       "meta": ""},
+      "n": 4268,
+      "pseudo_r2": 0.0522,
+      "log_pseudoverosimilitud": -6.11e5
+    }
+  },
+  "probit": {
+    "nota": "Robustez (Cuadro E.1). p = Phi(const + sum(coef * x)), Phi = CDF normal estándar. Ojo: en 2024 el ingreso es significativo al 10% en Probit pero no en Logit.",
+    "2019": {
+      "const": -6.6913,
+      "const_se": 0.7567,
+      "const_sig": "***",
+      "coef": {"log_ingreso": 0.0145, "edad": 0.2062, "edad2": -0.0020, "educ_superior": 0.3100, "formal": 0.1469, "boyaca": -0.0098, "tolima": -0.0804, "meta": -0.4206},
+      "se":   {"log_ingreso": 0.0244, "edad": 0.0321, "edad2": 0.0003,  "educ_superior": 0.0890, "formal": 0.0883, "boyaca": 0.1007,  "tolima": 0.0894,  "meta": 0.1115},
+      "sig":  {"log_ingreso": "",     "edad": "***",  "edad2": "***",   "educ_superior": "***",  "formal": "*",    "boyaca": "",      "tolima": "",       "meta": "***"},
+      "n": 5058,
+      "pseudo_r2": 0.0768
+    },
+    "2024": {
+      "const": -4.1695,
+      "const_se": 0.9073,
+      "const_sig": "***",
+      "coef": {"log_ingreso": 0.0496, "edad": 0.0697, "edad2": -0.0006, "educ_superior": 0.3777, "formal": 0.1010, "boyaca": -0.3649, "tolima": -0.1011, "meta": -0.1750},
+      "se":   {"log_ingreso": 0.0273, "edad": 0.0359, "edad2": 0.0004,  "educ_superior": 0.1161, "formal": 0.1140, "boyaca": 0.1071,  "tolima": 0.1093,  "meta": 0.1155},
+      "sig":  {"log_ingreso": "*",    "edad": "*",    "edad2": "*",     "educ_superior": "***",  "formal": "",     "boyaca": "***",   "tolima": "",       "meta": ""},
+      "n": 4268,
+      "pseudo_r2": 0.0512
+    }
+  },
+  "descriptivas": {
+    "nota": "Tabla 8.3: estadística descriptiva ponderada (FEX_C). 'total' es la muestra conjunta de Bogotá + las 3 cabeceras estudiadas, NO el promedio nacional de Colombia. Rotular siempre como 'muestra de estudio'.",
+    "columnas": ["bogota", "boyaca", "tolima", "meta", "total"],
+    "2019": {
+      "tasa_credito":   {"bogota": 0.092, "boyaca": 0.077, "tolima": 0.074, "meta": 0.032, "total": 0.085},
+      "log_ingreso":    {"bogota": 13.76, "boyaca": 13.01, "tolima": 13.57, "meta": 13.72, "total": 13.69},
+      "edad":           {"bogota": 43.4,  "boyaca": 44.8,  "tolima": 46.2,  "meta": 43.1,  "total": 43.7},
+      "educ_superior":  {"bogota": 0.467, "boyaca": 0.280, "tolima": 0.343, "meta": 0.271, "total": 0.429},
+      "formal":         {"bogota": 0.532, "boyaca": 0.276, "tolima": 0.340, "meta": 0.321, "total": 0.481}
+    },
+    "2024": {
+      "tasa_credito":   {"bogota": 0.076, "boyaca": 0.030, "tolima": 0.055, "meta": 0.045, "total": 0.069},
+      "log_ingreso":    {"bogota": 13.76, "boyaca": 13.72, "tolima": 14.12, "meta": 14.19, "total": 13.82},
+      "edad":           {"bogota": 43.7,  "boyaca": 45.3,  "tolima": 46.7,  "meta": 43.7,  "total": 44.1},
+      "educ_superior":  {"bogota": 0.570, "boyaca": 0.350, "tolima": 0.331, "meta": 0.364, "total": 0.520},
+      "formal":         {"bogota": 0.530, "boyaca": 0.357, "tolima": 0.303, "meta": 0.362, "total": 0.487}
+    }
+  },
+  "validacion": {
+    "nota": "La probabilidad evaluada en las medias NO tiene por qué igualar la tasa observada: E[edad^2] > (E[edad])^2 y los coeficientes están redondeados. Mostrar las dos cifras por separado y rotular la primera como 'hogar de referencia (en las medias)'. Si se quiere calibrar mejor, exportar coeficientes con 8 decimales desde Stata: matrix list e(b), format(%12.8f)"
+  }
+}
